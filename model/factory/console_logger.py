@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from model.logger import Logger
+from model.factory.logger import Logger
 
 class ConsoleLogger(Logger):
 

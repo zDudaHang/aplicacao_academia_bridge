@@ -1,5 +1,5 @@
-from model.logger_enum import TipoLoggerEnum
-from model.logger_factory import LoggerFactory
+from model.factory.logger_enum import TipoLoggerEnum
+from model.factory.logger_factory import LoggerFactory
 
 def main():
     factory = LoggerFactory()

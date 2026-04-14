@@ -1,8 +1,8 @@
 
-from model.console_logger import ConsoleLogger
-from model.file_logger import FileLogger
-from model.logger import Logger
-from model.logger_enum import TipoLoggerEnum
+from model.factory.console_logger import ConsoleLogger
+from model.factory.file_logger import FileLogger
+from model.factory.logger import Logger
+from model.factory.logger_enum import TipoLoggerEnum
 
 class LoggerFactory:
     def get_logger(self, name: str, tipo: TipoLoggerEnum) -> Logger : 

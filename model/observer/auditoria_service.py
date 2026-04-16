@@ -22,4 +22,7 @@ class AuditoriaService():
         with open(self.__filename, 'a') as file:
             writer = csv.DictWriter(file, fieldnames=[self.__COLUNA_DATA_EVENTO, self.__COLUNA_ITEM, self.__COLUNA_EVENTO])
             evento : str = f"{quantidade} unidades"
-            writer.writerow({ self.__COLUNA_DATA_EVENTO: datetime.now().isoformat(), self.__COLUNA_ITEM: nome_item, self.__COLUNA_EVENTO : evento })
+            writer.writerow({
+                 self.__COLUNA_DATA_EVENTO: datetime.now().isoformat(), 
+                 self.__COLUNA_ITEM: nome_item, self.__COLUNA_EVENTO : evento 
+            })

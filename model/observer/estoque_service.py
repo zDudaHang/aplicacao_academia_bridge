@@ -4,10 +4,11 @@ import shutil
 from tempfile import NamedTemporaryFile
 from typing import List
 
+from model.observer.estoque_listener import EstoqueListener
 from model.observer.item import Item
 
 
-class EstoqueService():
+class EstoqueService(EstoqueListener):
     __itens: List[Item] = [] 
     __filename : str = 'estoque.csv'
 
@@ -22,6 +23,7 @@ class EstoqueService():
                 item = self.__criar_item(row)
                 self.__itens.append(item)
         print(f"Quantidade de itens no estoque: {self.__itens.__len__()}")
+        self.__listar_estoque()
     
     def __criar_item(self, row: dict[str, str]) -> Item:
         nome = row.get(self.__COLUNA_NOME_ITEM)
@@ -32,7 +34,7 @@ class EstoqueService():
             int(quantidade)
         )
 
-    def atualizar(self, nome_item: str, quantidade: int):
+    def update(self, nome_item: str, quantidade: int):
         tempfile = NamedTemporaryFile('w', newline='', delete=False)
 
         antiga_quantidade : int
@@ -53,7 +55,7 @@ class EstoqueService():
         print("Estoque alterado com sucesso")
         print(f"Item {nome_item}: {antiga_quantidade} unidades -> {nova_quantidade} unidades")
 
-    def listar_estoque(self): 
+    def __listar_estoque(self): 
         print("\nESTOQUE")
         for item in self.__itens:
             print(f"{item.nome}: {item.quantidade} unidades")

@@ -2,7 +2,9 @@
 import csv
 from datetime import datetime
 
-class AuditoriaService():
+from model.observer.estoque_listener import EstoqueListener
+
+class AuditoriaService(EstoqueListener):
     __filename : str = 'auditoria.csv'
 
     __COLUNA_DATA_EVENTO = 'DATA DO EVENTO'
@@ -18,7 +20,7 @@ class AuditoriaService():
         except FileExistsError:
             print(f"O arquivo {self.__filename} já existe.")
     
-    def auditar(self, nome_item: str, quantidade: int):
+    def update(self, nome_item: str, quantidade: int):
         with open(self.__filename, 'a') as file:
             writer = csv.DictWriter(file, fieldnames=[self.__COLUNA_DATA_EVENTO, self.__COLUNA_ITEM, self.__COLUNA_EVENTO])
             evento : str = f"{quantidade} unidades"
